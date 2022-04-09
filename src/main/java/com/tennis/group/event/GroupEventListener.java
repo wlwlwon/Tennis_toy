@@ -1,6 +1,7 @@
 package com.tennis.group.event;
 
 import com.tennis.account.Account;
+import com.tennis.account.AccountPredicates;
 import com.tennis.account.AccountRepository;
 import com.tennis.config.AppProperties;
 import com.tennis.group.Group;
