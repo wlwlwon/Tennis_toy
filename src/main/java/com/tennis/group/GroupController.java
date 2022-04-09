@@ -2,7 +2,10 @@ package com.tennis.group;
 
 import com.tennis.account.Account;
 import com.tennis.account.CurrentAccount;
+import com.tennis.group.form.GroupForm;
+import com.tennis.group.validator.GroupFormValidator;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -32,8 +35,8 @@ public class GroupController {
         webDataBinder.addValidators(groupFormValidator);
     }
 
-    //"/study/{path}을 통해 study그룹 divide
-    @GetMapping("/study/{path}")
+    //"/group/{path}을 통해 group그룹 divide
+    @GetMapping("/group/{path}")
     public String viewGroup(@CurrentAccount Account account, @PathVariable String path, Model model) {
         Group group = groupService.getGroup(path);
         model.addAttribute(account);
@@ -61,7 +64,7 @@ public class GroupController {
 
     @GetMapping("/group/{path}/members")
     public String viewGroupMembers(@CurrentAccount Account account, @PathVariable String path, Model model) {
-        Group study = groupService.getGroup(path);
+        Group group = groupService.getGroup(path);
         model.addAttribute(account);
         model.addAttribute(group);
         return "group/members";
