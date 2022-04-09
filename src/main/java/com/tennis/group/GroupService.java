@@ -177,7 +177,7 @@ public class GroupService {
 
     }
 
-    public void generateTestStudies(Account account) {
+    public void generateTestGroup(Account account) {
         for (int i = 0; i < 30; i++) {
             String randomvalue = RandomString.make(5);
             Group group = Group.builder()
