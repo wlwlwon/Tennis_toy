@@ -6,6 +6,7 @@ import com.tennis.group.event.GroupUpdateEvent;
 import com.tennis.group.form.GroupDescriptionForm;
 import com.tennis.tag.Tag;
 import com.tennis.tag.TagRepository;
+import com.tennis.zone.Zone;
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;

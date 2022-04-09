@@ -4,6 +4,7 @@ package com.tennis.group;
 import com.tennis.account.Account;
 import com.tennis.account.UserAccount;
 import com.tennis.tag.Tag;
+import com.tennis.zone.Zone;
 import lombok.*;
 
 import javax.persistence.*;
