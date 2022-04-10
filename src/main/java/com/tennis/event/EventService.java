@@ -3,7 +3,7 @@ package com.tennis.event;
 
 import com.tennis.account.Account;
 import com.tennis.event.form.EventForm;
-import com.tennis.group.Group;
+import com.tennis.moim.Moim;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -20,10 +20,10 @@ public class EventService {
     private final EventRepository eventRepository;
     private final EnrollmentRepository enrollmentRepository;
 
-    public Event createEvent(Event event, Group group, Account account) {
+    public Event createEvent(Event event, Moim moim, Account account) {
         event.setCreatedBy(account);
         event.setCreatedDateTime(LocalDateTime.now());
-        event.setGroup(group);
+        event.setMoim(moim);
 
         return eventRepository.save(event);
 

@@ -9,11 +9,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NamedEntityGraph(
-        name = "Enrollment.withEventAndGroup",
+        name = "Enrollment.withEventAndMoim",
         attributeNodes = {
-                @NamedAttributeNode(value = "event",subgraph = "group")
+                @NamedAttributeNode(value = "event",subgraph = "moim")
         },
-        subgraphs = @NamedSubgraph(name = "group",attributeNodes = @NamedAttributeNode("group"))
+        subgraphs = @NamedSubgraph(name = "moim",attributeNodes = @NamedAttributeNode("moim"))
 )
 
 @Entity

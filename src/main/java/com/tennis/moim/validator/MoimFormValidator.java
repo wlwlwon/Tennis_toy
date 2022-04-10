@@ -1,7 +1,7 @@
-package com.tennis.group.validator;
+package com.tennis.moim.validator;
 
-import com.tennis.group.GroupRepository;
-import com.tennis.group.form.GroupForm;
+import com.tennis.moim.MoimRepository;
+import com.tennis.moim.form.MoimForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -9,19 +9,19 @@ import org.springframework.validation.Validator;
 
 @Component
 @RequiredArgsConstructor
-public class GroupFormValidator implements Validator {
+public class MoimFormValidator implements Validator {
 
-    private final GroupRepository groupRepository;
+    private final MoimRepository moimRepository;
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return GroupForm.class.isAssignableFrom(aClass);
+        return MoimForm.class.isAssignableFrom(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        GroupForm groupForm = (GroupForm) o;
-        if(groupRepository.existsByPath(groupForm.getPath())){
+        MoimForm moimForm = (MoimForm) o;
+        if(moimRepository.existsByPath(moimForm.getPath())){
             errors.rejectValue("path","wrong.path","해당 모임 경로값을 사용할 수 없습니다.");
         }
     }

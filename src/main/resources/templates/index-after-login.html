@@ -36,40 +36,40 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${enrollment.event.title}">Event title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted" th:text="${enrollment.event.group.title}">group title</h6>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${enrollment.event.moim.title}">moim title</h6>
                             <p class="card-text">
                                 <span>
                                     <i class="fa fa-calendar-o"></i>
                                     <span class="calendar" th:text="${enrollment.event.startDateTime}">Last updated 3 mins ago</span>
                                 </span>
                             </p>
-                            <a th:href="@{'/group/' + ${enrollment.event.group.path} + '/events/' + ${enrollment.event.id}}" class="card-link">모임 조회</a>
-                            <a th:href="@{'/group/' + ${enrollment.event.group.path}}" class="card-link">모임 조회</a>
+                            <a th:href="@{'/moim/' + ${enrollment.event.moim.path} + '/events/' + ${enrollment.event.id}}" class="card-link">모임 조회</a>
+                            <a th:href="@{'/moim/' + ${enrollment.event.moim.path}}" class="card-link">모임 조회</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <h5 class="font-weight-light mt-3" th:if="${#lists.isEmpty(groupList)}">관련 모임이 없습니다.</h5>
-            <h5 class="font-weight-light mt-3" th:if="${!#lists.isEmpty(groupList)}">주요 활동 지역의 관심 주제 모임</h5>
+            <h5 class="font-weight-light mt-3" th:if="${#lists.isEmpty(moimList)}">관련 모임이 없습니다.</h5>
+            <h5 class="font-weight-light mt-3" th:if="${!#lists.isEmpty(moimList)}">주요 활동 지역의 관심 주제 모임</h5>
             <div class="row justify-content-center">
-                <div th:replace="fragments.html :: group-list (groupList=${groupList})"></div>
+                <div th:replace="fragments.html :: moim-list (moimList=${moimList})"></div>
             </div>
         </div>
         <div class="col-md-3">
-            <h5 class="font-weight-light" th:if="${#lists.isEmpty(groupManagerOf)}">관리중인 모임이 없습니다.</h5>
-            <h5 class="font-weight-light" th:if="${!#lists.isEmpty(groupManagerOf)}">관리중인 모임</h5>
-            <div class="list-group" th:if="${!#lists.isEmpty(groupManagerOf)}">
-                <a href="#" th:href="@{'/group/' + ${group.path}}" th:text="${group.title}"
-                   class="list-group-item list-group-item-action" th:each="group: ${groupManagerOf}">
-                    group title
+            <h5 class="font-weight-light" th:if="${#lists.isEmpty(moimManagerOf)}">관리중인 모임이 없습니다.</h5>
+            <h5 class="font-weight-light" th:if="${!#lists.isEmpty(moimManagerOf)}">관리중인 모임</h5>
+            <div class="list-group" th:if="${!#lists.isEmpty(moimManagerOf)}">
+                <a href="#" th:href="@{'/moim/' + ${moim.path}}" th:text="${moim.title}"
+                   class="list-group-item list-group-item-action" th:each="moim: ${moimManagerOf}">
+                    moim title
                 </a>
             </div>
 
-            <h5 class="font-weight-light mt-3" th:if="${#lists.isEmpty(groupMemberOf)}">참여중인 모임이 없습니다.</h5>
-            <h5 class="font-weight-light mt-3" th:if="${!#lists.isEmpty(groupMemberOf)}">참여중인 모임</h5>
-            <div class="list-group" th:if="${!#lists.isEmpty(groupMemberOf)}">
-                <a href="#" th:href="@{'/group/' + ${group.path}}" th:text="${group.title}"
-                   class="list-group-item list-group-item-action" th:each="group: ${groupMemberOf}">
+            <h5 class="font-weight-light mt-3" th:if="${#lists.isEmpty(moimMemberOf)}">참여중인 모임이 없습니다.</h5>
+            <h5 class="font-weight-light mt-3" th:if="${!#lists.isEmpty(moimMemberOf)}">참여중인 모임</h5>
+            <div class="list-group" th:if="${!#lists.isEmpty(moimMemberOf)}">
+                <a href="#" th:href="@{'/moim/' + ${moim.path}}" th:text="${moim.title}"
+                   class="list-group-item list-group-item-action" th:each="moim: ${moimMemberOf}">
                     group title
                 </a>
             </div>

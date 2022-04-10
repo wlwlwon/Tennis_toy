@@ -2,7 +2,7 @@ package com.tennis.event;
 
 import com.tennis.account.Account;
 import com.tennis.account.UserAccount;
-import com.tennis.group.Group;
+import com.tennis.moim.Moim;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +31,7 @@ public class Event {
     private Long id;
 
     @ManyToOne
-    private Group group;
+    private Moim moim;
 
     @ManyToOne
     private Account createdBy;

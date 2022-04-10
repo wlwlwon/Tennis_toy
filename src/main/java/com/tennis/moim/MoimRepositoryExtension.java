@@ -1,4 +1,4 @@
-package com.tennis.group;
+package com.tennis.moim;
 
 import com.tennis.tag.Tag;
 import com.tennis.zone.Zone;
@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 @Transactional(readOnly = true)
-public interface GroupRepositoryExtension {
+public interface MoimRepositoryExtension {
 
-    Page<Group> findByKeyword(String keyword, Pageable pageable);
+    Page<Moim> findByKeyword(String keyword, Pageable pageable);
 
-    List<Group> findByAccount(Set<Tag> tags, Set<Zone> zones);
+    List<Moim> findByAccount(Set<Tag> tags, Set<Zone> zones);
 }

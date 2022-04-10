@@ -1,4 +1,4 @@
-package com.tennis.group.form;
+package com.tennis.moim.form;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor
-public class GroupDescriptionForm {
+public class MoimDescriptionForm {
 
     @NotBlank
     @Length(max = 100)

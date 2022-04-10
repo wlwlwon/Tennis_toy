@@ -1,13 +1,13 @@
-package com.tennis.group.event;
+package com.tennis.moim.event;
 
-import com.tennis.group.Group;
+import com.tennis.moim.Moim;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class GroupUpdateEvent {
+public class MoimUpdateEvent {
 
-    private final Group group;
+    private final Moim moim;
     private final String message;
 }

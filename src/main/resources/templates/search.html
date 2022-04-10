@@ -5,12 +5,12 @@
 <div th:replace="fragments.html :: main-nav"></div>
 <div class="container">
     <div class="py-5 text-center">
-        <p class="lead" th:if="${groupPage.getTotalElements() == 0}">
+        <p class="lead" th:if="${moimPage.getTotalElements() == 0}">
             <strong th:text="${keyword}" id="keyword" class="context"></strong>에 해당하는 모임이 없습니다.
         </p>
-        <p class="lead" th:if="${groupPage.getTotalElements() > 0}">
+        <p class="lead" th:if="${moimPage.getTotalElements() > 0}">
             <strong th:text="${keyword}" id="keyword" class="context"></strong>에 해당하는 모임을
-            <span th:text="${groupPage.getTotalElements()}"></span>개
+            <span th:text="${moimPage.getTotalElements()}"></span>개
             찾았습니다.
         </p>
         <div class="dropdown">
@@ -19,36 +19,36 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" th:classappend="${#strings.equals(sortProperty, 'publishedDateTime')}? active"
-                   th:href="@{'/search/group?sort=publishedDateTime,desc&keyword=' + ${keyword}}">
+                   th:href="@{'/search/moim?sort=publishedDateTime,desc&keyword=' + ${keyword}}">
                     스터디 공개일
                 </a>
                 <a class="dropdown-item" th:classappend="${#strings.equals(sortProperty, 'memberCount')}? active"
-                   th:href="@{'/search/group?sort=memberCount,desc&keyword=' + ${keyword}}">
+                   th:href="@{'/search/moim?sort=memberCount,desc&keyword=' + ${keyword}}">
                     멤버수
                 </a>
             </div>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div th:replace="fragments.html :: group-list (groupList=${groupPage.getContent()})"></div>
+        <div th:replace="fragments.html :: moim-list (moimList=${moimPage.getContent()})"></div>
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-10">
             <nav>
                 <ul class="pagination justify-content-center">
-                    <li class="page-item" th:classappend="${!groupPage.hasPrevious()}? disabled">
-                        <a th:href="@{'/search/group?keyword=' + ${keyword} + '&sort=' + ${sortProperty} + ',desc&page=' + ${groupPage.getNumber() - 1}}"
+                    <li class="page-item" th:classappend="${!moimPage.hasPrevious()}? disabled">
+                        <a th:href="@{'/search/moim?keyword=' + ${keyword} + '&sort=' + ${sortProperty} + ',desc&page=' + ${moimPage.getNumber() - 1}}"
                            class="page-link" tabindex="-1" aria-disabled="true">
                             Previous
                         </a>
                     </li>
-                    <li class="page-item" th:classappend="${i == groupPage.getNumber()}? active"
-                        th:each="i: ${#numbers.sequence(0, groupPage.getTotalPages() - 1)}">
-                        <a th:href="@{'/search/group?keyword=' + ${keyword} + '&sort=' + ${sortProperty} + ',desc&page=' + ${i}}"
+                    <li class="page-item" th:classappend="${i == moimPage.getNumber()}? active"
+                        th:each="i: ${#numbers.sequence(0, moimPage.getTotalPages() - 1)}">
+                        <a th:href="@{'/search/moim?keyword=' + ${keyword} + '&sort=' + ${sortProperty} + ',desc&page=' + ${i}}"
                            class="page-link" href="#" th:text="${i + 1}">1</a>
                     </li>
-                    <li class="page-item" th:classappend="${!groupPage.hasNext()}? disabled">
-                        <a th:href="@{'/search/group?keyword=' + ${keyword} + '&sort=' + ${sortProperty} + ',desc&page=' + ${groupPage.getNumber() + 1}}"
+                    <li class="page-item" th:classappend="${!moimPage.hasNext()}? disabled">
+                        <a th:href="@{'/search/moim?keyword=' + ${keyword} + '&sort=' + ${sortProperty} + ',desc&page=' + ${moimPage.getNumber() + 1}}"
                            class="page-link">
                             Next
                         </a>

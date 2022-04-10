@@ -3,10 +3,10 @@
 <head th:replace="fragments.html :: head"></head>
 <body>
 <nav th:replace="fragments.html :: main-nav"></nav>
-<div th:replace="fragments.html :: group-banner"></div>
+<div th:replace="fragments.html :: moim-banner"></div>
 <div class="container">
-    <div th:replace="fragments.html :: group-info"></div>
-    <div th:replace="fragments.html :: group-menu(groupMenu='events')"></div>
+    <div th:replace="fragments.html :: moim-info"></div>
+    <div th:replace="fragments.html :: moim-menu(moimMenu='events')"></div>
     <div class="row my-3 mx-3 justify-content-center">
         <div class="col-10 px-0 row">
             <div class="col-2 px-0">
@@ -43,7 +43,7 @@
                                 </span>
                             </li>
                             <li class="list-group-item">
-                                <a href="#" th:href="@{'/group/' + ${group.path} + '/events/' + ${event.id}}" class="card-link">자세히 보기</a>
+                                <a href="#" th:href="@{'/moim/' + ${moim.path} + '/events/' + ${event.id}}" class="card-link">자세히 보기</a>
                             </li>
                         </ul>
                     </div>
@@ -70,7 +70,7 @@
                             <span class="date-weekday-time" th:text="${event.endDateTime}"></span>
                         </td>
                         <td>
-                            <a href="#" th:href="@{'/group/' + ${group.path} + '/events/' + ${event.id}}" class="card-link">자세히 보기</a>
+                            <a href="#" th:href="@{'/moim/' + ${moim.path} + '/events/' + ${event.id}}" class="card-link">자세히 보기</a>
                         </td>
                     </tr>
                     </tbody>

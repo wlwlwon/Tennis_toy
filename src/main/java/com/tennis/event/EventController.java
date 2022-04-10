@@ -5,8 +5,8 @@ import com.tennis.account.Account;
 import com.tennis.account.CurrentAccount;
 import com.tennis.event.form.EventForm;
 import com.tennis.event.validator.EventValidator;
-import com.tennis.group.Group;
-import com.tennis.group.GroupService;
+import com.tennis.moim.Moim;
+import com.tennis.moim.MoimService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/group/{path}")
+@RequestMapping("/moim/{path}")
 @RequiredArgsConstructor
 public class EventController {
 
-    private final GroupService groupService;
+    private final MoimService moimService;
     private final EventService eventService;
     private final ModelMapper modelMapper;
     private final EventValidator eventValidator;
@@ -38,8 +38,8 @@ public class EventController {
 
     @GetMapping("/new-event")
     public String newEventForm(@CurrentAccount Account account, @PathVariable String path, Model model) {
-        Group group = groupService.getGroupToUpdateStatus(account, path);
-        model.addAttribute(group);
+        Moim moim = moimService.getMoimToUpdateStatus(account, path);
+        model.addAttribute(moim);
         model.addAttribute(account);
         model.addAttribute(new EventForm());
         return "event/form";
@@ -49,31 +49,31 @@ public class EventController {
     @PostMapping("/new-event")
     public String newEventSubmit(@CurrentAccount Account account, @PathVariable String path, @Valid EventForm eventForm, Errors errors, Model model) {
 
-        Group group = groupService.getGroupToUpdateStatus(account, path);
+        Moim moim = moimService.getMoimToUpdateStatus(account, path);
         if (errors.hasErrors()) {
             model.addAttribute(account);
-            model.addAttribute(group);
+            model.addAttribute(moim);
             return "event/form";
         }
-        Event event = eventService.createEvent(modelMapper.map(eventForm, Event.class), group, account);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        Event event = eventService.createEvent(modelMapper.map(eventForm, Event.class), moim, account);
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
     @GetMapping("/events/{id}")
     public String getEvent(@CurrentAccount Account account, @PathVariable String path, @PathVariable("id") Event event, Model model) {
         model.addAttribute(account);
         model.addAttribute(event);
-        model.addAttribute(groupService.getGroup(path));
+        model.addAttribute(moimService.getMoim(path));
         return "event/view";
     }
 
     @GetMapping("/events")
-    public String viewGroupEvents(@CurrentAccount Account account, @PathVariable String path, Model model) {
-        Group group = groupService.getGroup(path);
+    public String viewMoimEvents(@CurrentAccount Account account, @PathVariable String path, Model model) {
+        Moim moim = moimService.getMoim(path);
         model.addAttribute(account);
-        model.addAttribute(group);
+        model.addAttribute(moim);
 
-        List<Event> events = eventRepository.findByGroupOrderByStartDateTime(group);
+        List<Event> events = eventRepository.findByMoimOrderByStartDateTime(moim);
         List<Event> newEvents = new ArrayList<>();
         List<Event> oldEvents = new ArrayList<>();
         events.forEach(e -> {
@@ -87,13 +87,13 @@ public class EventController {
         model.addAttribute("newEvents", newEvents);
         model.addAttribute("oldEvents", oldEvents);
 
-        return "group/events";
+        return "moim/events";
     }
 
     @GetMapping("/events/{id}/edit")
     public String updateEventForm(@CurrentAccount Account account, @PathVariable String path, @PathVariable("id") Event event, Model model) {
-        Group group = groupService.getGroupToUpdate(account, path);
-        model.addAttribute(group);
+        Moim moim = moimService.getMoimToUpdate(account, path);
+        model.addAttribute(moim);
         model.addAttribute(account);
         model.addAttribute(event);
         model.addAttribute(modelMapper.map(event, EventForm.class));
@@ -102,67 +102,67 @@ public class EventController {
 
     @PostMapping("/events/{id}/edit")
     public String updateEventSubmit(@CurrentAccount Account account, @PathVariable String path, @PathVariable("id")Event event, @Valid EventForm eventForm, Errors errors, Model model) {
-        Group group = groupService.getGroupToUpdate(account, path);
+        Moim moim = moimService.getMoimToUpdate(account, path);
         eventForm.setEventType(event.getEventType());
         eventValidator.validateUpdateForm(eventForm, event, errors);
 
         if (errors.hasErrors()) {
             model.addAttribute(account);
-            model.addAttribute(group);
+            model.addAttribute(moim);
             model.addAttribute(event);
             return "event/update-form";
         }
         eventService.updateEvent(event, eventForm);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
     @DeleteMapping("/events/{id}")
     public String cancelEvent(@CurrentAccount Account account, @PathVariable String path, @PathVariable("id") Event event) {
-        Group group = groupService.getGroupToUpdateStatus(account, path);
+        Moim moim = moimService.getMoimToUpdateStatus(account, path);
         eventService.deleteEvent(event);
-        return "redirect:/group/" + group.getEncodedPath() + "/events";
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events";
     }
 
     @PostMapping("/events/{id}/enroll")
     public String newEnrollment(@CurrentAccount Account account, @PathVariable String path, @PathVariable("id") Event event ){
-        Group group = groupService.getGroupToEnroll(path);
+        Moim moim = moimService.getMoimToEnroll(path);
         eventService.newEnrollment(event, account);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
     @PostMapping("/events/{id}/disenroll")
     public String cancelEnrollment(@CurrentAccount Account account, @PathVariable String path, @PathVariable("id") Event event) {
-        Group group = groupService.getGroupToEnroll(path);
+        Moim moim = moimService.getMoimToEnroll(path);
         eventService.cancelEnrollment(event, account);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
     @GetMapping("/events/{eventId}/enrollments/{enrollmentId}/accept")
     public String acceptEnrollment(@CurrentAccount Account account, @PathVariable String path, @PathVariable("eventId") Event event, @PathVariable("enrollmentId")Enrollment enrollment) {
-        Group group = groupService.getGroupToUpdate(account, path);
+        Moim moim = moimService.getMoimToUpdate(account, path);
         eventService.acceptEnrollment(event,enrollment);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
     @GetMapping("/events/{eventId}/enrollments/{enrollmentId}/reject")
     public String rejectEnrollment(@CurrentAccount Account account, @PathVariable String path, @PathVariable("eventId") Event event, @PathVariable("enrollmentId")Enrollment enrollment) {
-        Group group = groupService.getGroupToUpdate(account, path);
+        Moim moim = moimService.getMoimToUpdate(account, path);
         eventService.rejectEnrollment(event,enrollment);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
     @GetMapping("/events/{eventId}/enrollments/{enrollmentId}/checkin")
     public String checkInEnrollment(@CurrentAccount Account account, @PathVariable String path, @PathVariable("eventId") Event event, @PathVariable("enrollmentId") Enrollment enrollment) {
-        Group group = groupService.getGroupToUpdate(account, path);
+        Moim moim = moimService.getMoimToUpdate(account, path);
         eventService.checkInEnrollment(enrollment);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
     @GetMapping("/events/{eventId}/enrollments/{enrollmentId}/cancel-checkin")
     public String cancelCheckInEnrollment(@CurrentAccount Account account, @PathVariable String path, @PathVariable("eventId") Event event, @PathVariable("enrollmentId") Enrollment enrollment) {
-        Group group = groupService.getGroupToUpdate(account, path);
+        Moim moim = moimService.getMoimToUpdate(account, path);
         eventService.cancelCheckInEnrollment(enrollment);
-        return "redirect:/group/" + group.getEncodedPath() + "/events/" + event.getId();
+        return "redirect:/moim/" + moim.getEncodedPath() + "/events/" + event.getId();
     }
 
 }

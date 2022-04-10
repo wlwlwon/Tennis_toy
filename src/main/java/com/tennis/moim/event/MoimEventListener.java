@@ -1,11 +1,11 @@
-package com.tennis.group.event;
+package com.tennis.moim.event;
 
 import com.tennis.account.Account;
 import com.tennis.account.AccountPredicates;
 import com.tennis.account.AccountRepository;
 import com.tennis.config.AppProperties;
-import com.tennis.group.Group;
-import com.tennis.group.GroupRepository;
+import com.tennis.moim.Moim;
+import com.tennis.moim.MoimRepository;
 import com.tennis.mail.EmailMessage;
 import com.tennis.mail.EmailService;
 import com.tennis.notification.Notification;
@@ -29,9 +29,9 @@ import java.util.Set;
 @Component
 @Async
 @RequiredArgsConstructor
-public class GroupEventListener {
+public class MoimEventListener {
 
-    private final GroupRepository groupRepository;
+    private final MoimRepository moimRepository;
     private final AccountRepository accountRepository;
     private final EmailService emailService;
     private final TemplateEngine templateEngine;
@@ -39,41 +39,41 @@ public class GroupEventListener {
     private final NotificationRepository notificationRepository;
 
     @EventListener
-    public void handleGroupCreatedEvent(GroupCreatedEvent groupCreatedEvent){
-        Group group = groupRepository.findGroupWithTagsAndZonesById(groupCreatedEvent.getGroup().getId());
-        Iterable<Account> accounts = accountRepository.findAll(AccountPredicates.findByTagsAndZones(group.getTags(), group.getZones()));
+    public void handleMoimCreatedEvent(MoimCreatedEvent moimCreatedEvent){
+        Moim moim = moimRepository.findMoimWithTagsAndZonesById(moimCreatedEvent.getMoim().getId());
+        Iterable<Account> accounts = accountRepository.findAll(AccountPredicates.findByTagsAndZones(moim.getTags(), moim.getZones()));
         accounts.forEach( account -> {
-            if(account.isGroupCreatedByEmail()){
-                sendGroupCreatedEmail(group, account,"새로운 스터디가 생겼습니다.","스터디올래,'"+group.getTitle()+"'스터디가 생겼습니다.");
+            if(account.isMoimCreatedByEmail()){
+                sendMoimCreatedEmail(moim, account,"새로운 스터디가 생겼습니다.","스터디올래,'"+moim.getTitle()+"'스터디가 생겼습니다.");
             }
-            if(account.isGroupCreatedByWeb()){
-                createNotification(group, account, group.getShortDescription(), NotificationType.GROUP_UPDATED);
+            if(account.isMoimCreatedByWeb()){
+                createNotification(moim, account, moim.getShortDescription(), NotificationType.Moim_UPDATED);
             }
         });
     }
 
     @EventListener
-    public void handleGroupUpdateEvent(GroupUpdateEvent groupUpdateEvent) {
-        Group group = groupRepository.findGroupWithManagersAndMembersById(groupUpdateEvent.getGroup().getId());
+    public void handleMoimUpdateEvent(MoimUpdateEvent moimUpdateEvent) {
+        Moim moim = moimRepository.findMoimWithManagersAndMembersById(moimUpdateEvent.getMoim().getId());
         Set<Account> accounts = new HashSet<>();
-        accounts.addAll(group.getManagers());
-        accounts.addAll(group.getMembers());
+        accounts.addAll(moim.getManagers());
+        accounts.addAll(moim.getMembers());
 
         accounts.forEach(account -> {
-            if (account.isGroupCreatedByEmail()) {
-                sendGroupCreatedEmail(group,account,groupUpdateEvent.getMessage(),"스터디올래,'"+group.getTitle()+"'스터디에 새소식이 있습니다.");
+            if (account.isMoimCreatedByEmail()) {
+                sendMoimCreatedEmail(moim,account,moimUpdateEvent.getMessage(),"모임,'"+moim.getTitle()+"'모임에 새소식이 있습니다.");
             }
-            if (account.isGroupCreatedByWeb()) {
-                createNotification(group,account,group.getShortDescription(),NotificationType.GROUP_UPDATED);
+            if (account.isMoimCreatedByWeb()) {
+                createNotification(moim,account,moim.getShortDescription(),NotificationType.Moim_UPDATED);
             }
         });
 
     }
 
-    private void createNotification(Group group, Account account, String message, NotificationType notificationType) {
+    private void createNotification(Moim moim, Account account, String message, NotificationType notificationType) {
         Notification notification = new Notification();
-        notification.setTitle(group.getTitle());
-        notification.setLink("/group/"+ group.getEncodedPath());
+        notification.setTitle(moim.getTitle());
+        notification.setLink("/moim/"+ moim.getEncodedPath());
         notification.setChecked(false);
         notification.setCreatedDateTime(LocalDateTime.now());
         notification.setMessage(message);
@@ -82,11 +82,11 @@ public class GroupEventListener {
         notificationRepository.save(notification);
     }
 
-    private void sendGroupCreatedEmail(Group group, Account account, String contextMessage, String emailSubject) {
+    private void sendMoimCreatedEmail(Moim moim, Account account, String contextMessage, String emailSubject) {
         Context context = new Context();
         context.setVariable("nickname", account.getNickname());
-        context.setVariable("link", "/group/"+ group.getEncodedPath());
-        context.setVariable("linkName", group.getTitle());
+        context.setVariable("link", "/moim/"+ moim.getEncodedPath());
+        context.setVariable("linkName", moim.getTitle());
         context.setVariable("message",contextMessage);
         context.setVariable("host",appProperties.getHost());
 

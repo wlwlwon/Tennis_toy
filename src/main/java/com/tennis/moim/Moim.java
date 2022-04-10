@@ -1,4 +1,4 @@
-package com.tennis.group;
+package com.tennis.moim;
 
 
 import com.tennis.account.Account;
@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 @Getter @Setter @EqualsAndHashCode(of = "id")
 @Builder @AllArgsConstructor @NoArgsConstructor
-public class Group {
+public class Moim {
 
 
     @Id
