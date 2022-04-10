@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="group-image-file">
-                        <label class="custom-file-label" for="group-image-file">스터디 이미지 변경</label>
+                        <label class="custom-file-label" for="group-image-file">모임 이미지 변경</label>
                     </div>
                     <div id="new-group-image-control" class="mt-3">
                         <button class="btn btn-outline-primary btn-block" id="cut-button">자르기</button>
@@ -75,18 +75,18 @@
         let $resetBtn = $("#reset-button");
         let $cutBtn = $("#cut-button");
         let $saveBtn = $("#save-button");
-        let $newStudyImage = $("#new-study-image");
-        let $currentStudyImage = $("#current-study-image");
-        let $resultImage = $("#cropped-new-study-image");
-        let $studyImage = $("#studyImage");
+        let $newGroupImage = $("#new-group-image");
+        let $currentGroupImage = $("#current-group-image");
+        let $resultImage = $("#cropped-new-group-image");
+        let $groupImage = $("#groupImage");
 
-        $newStudyImage.hide();
+        $newGroupImage.hide();
         $cutBtn.hide();
         $resetBtn.hide();
         $confirmBtn.hide();
         $saveBtn.hide();
 
-        $("#study-image-file").change(function(e) {
+        $("#group-image-file").change(function(e) {
             if (e.target.files.length === 1) {
                 const reader = new FileReader();
                 reader.onload = e => {
@@ -97,13 +97,13 @@
                         }
 
                         let img = document.createElement("img");
-                        img.id = 'new-study';
+                        img.id = 'new-group';
                         img.src = e.target.result;
                         img.setAttribute('width', '100%');
 
-                        $newStudyImage.html(img);
-                        $newStudyImage.show();
-                        $currentStudyImage.hide();
+                        $newGroupImage.html(img);
+                        $newGroupImage.show();
+                        $currentGroupImage.hide();
 
                         let $newImage = $(img);
                         $newImage.cropper({aspectRatio: 13/2});
@@ -120,14 +120,14 @@
         });
 
         $resetBtn.click(function() {
-            $currentStudyImage.show();
-            $newStudyImage.hide();
+            $currentGroupImage.show();
+            $newGroupImage.hide();
             $resultImage.hide();
             $resetBtn.hide();
             $cutBtn.hide();
             $confirmBtn.hide();
             $saveBtn.hide();
-            $studyImage.val('');
+            $groupImage.val('');
         });
 
         $cutBtn.click(function () {
@@ -139,7 +139,7 @@
             }
 
             let newImage = document.createElement("img");
-            newImage.id = "cropped-new-study-image";
+            newImage.id = "cropped-new-group-image";
             newImage.src = dataUrl;
             newImage.width = 640;
             $resultImage.html(newImage);
@@ -147,10 +147,10 @@
             $confirmBtn.show();
 
             $confirmBtn.click(function () {
-                $newStudyImage.html(newImage);
+                $newGroupImage.html(newImage);
                 $cutBtn.hide();
                 $confirmBtn.hide();
-                $studyImage.val(dataUrl);
+                $groupImage.val(dataUrl);
                 $saveBtn.show();
             });
         });
