@@ -6,16 +6,16 @@ import lombok.Data;
 @Data
 public class Notifications {
 
-    private boolean studyCreatedByEmail;
+    private boolean moimCreatedByEmail;
 
-    private boolean studyCreatedByWeb;
+    private boolean moimCreatedByWeb;
 
-    private boolean studyEnrollmentResultByEmail;
+    private boolean moimEnrollmentResultByEmail;
 
-    private boolean studyEnrollmentResultByWeb;
+    private boolean moimEnrollmentResultByWeb;
 
-    private boolean studyUpdatedByEmail;
+    private boolean moimUpdatedByEmail;
 
-    private boolean studyUpdatedByWeb;
+    private boolean moimUpdatedByWeb;
 
 }

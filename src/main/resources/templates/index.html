@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments.html :: head"></head>
 <body class="bg-light">
@@ -8,15 +8,19 @@
         <h1>니스테?</h1>
         <p class="lead text-muted">
             태그와 지역 기반으로 모임을 찾고 참여하세요.<br/>
-            테니스 모임 관리 기능을 제공합니다.
+            모임 관리 기능을 제공합니다.
         </p>
         <p>
             <a th:href="@{/sign-up}" class="btn btn-primary my-2">회원 가입</a>
         </p>
     </div>
 </section>
-
-
+<div class="container">
+    <div class="row justify-content-center pt-3">
+        <div th:replace="fragments.html :: moim-list (moimList=${moimList})"></div>
+    </div>
+</div>
+<div th:replace="fragments.html :: footer"></div>
+<div th:replace="fragments.html :: date-time"></div>
 </body>
-
 </html>

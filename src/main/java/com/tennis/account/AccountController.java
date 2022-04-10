@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,29 +24,25 @@ public class AccountController {
     private final AccountRepository accountRepository;
 
     @InitBinder("signUpForm")
-    public void initBinder(WebDataBinder webDataBinder){
+    public void initBinder(WebDataBinder webDataBinder) {
         webDataBinder.addValidators(signUpFormValidator);
     }
 
     @GetMapping("/sign-up")
-    public String signUpForm(Model model){
-        model.addAttribute("signUpForm",new SignUpForm());
+    public String signUpForm(Model model) {
+        model.addAttribute(new SignUpForm());
         return "account/sign-up";
     }
 
     @PostMapping("/sign-up")
-    public String signUpSubmit(@Valid SignUpForm signUpForm, Errors errors){
-        if(errors.hasErrors()){
+    public String signUpSubmit(@Valid SignUpForm signUpForm, Errors errors) {
+        if (errors.hasErrors()) {
             return "account/sign-up";
         }
+
         Account account = accountService.processNewAccount(signUpForm);
         accountService.login(account);
         return "redirect:/";
-    }
-    @GetMapping("/check-email")
-    public String checkEmail(@CurrentAccount Account account, Model model) {
-        model.addAttribute("email", account.getEmail());
-        return "account/check-email";
     }
 
     @GetMapping("/check-email-token")
@@ -62,11 +59,16 @@ public class AccountController {
             return view;
         }
 
-        account.completeSignUp();
-        accountService.login(account);
+        accountService.completeSignUp(account);
         model.addAttribute("numberOfUser", accountRepository.count());
         model.addAttribute("nickname", account.getNickname());
         return view;
+    }
+
+    @GetMapping("/check-email")
+    public String checkEmail(@CurrentAccount Account account, Model model) {
+        model.addAttribute("email", account.getEmail());
+        return "account/check-email";
     }
 
     @GetMapping("/resend-confirm-email")
@@ -81,8 +83,16 @@ public class AccountController {
         return "redirect:/";
     }
 
+    @GetMapping("/profile/{nickname}")
+    public String viewProfile(@PathVariable String nickname, Model model, @CurrentAccount Account account) {
+
+        Account takeaccount = accountService.getAccount(nickname);
 
 
+        model.addAttribute(takeaccount);
+        model.addAttribute("isOwner", takeaccount.equals(account));
+        return "account/profile";
+    }
     @GetMapping("/email-login")
     public String emailLoginForm() {
         return "account/email-login";

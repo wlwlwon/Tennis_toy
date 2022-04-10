@@ -48,17 +48,17 @@ public class Account {
     @Basic(fetch = FetchType.EAGER)
     private String profileImage;
 
-    private boolean groupCreatedByEmail;
+    private boolean moimCreatedByEmail;
 
-    private boolean groupCreatedByWeb = true;
+    private boolean moimCreatedByWeb = true;
 
-    private boolean groupEnrollmentResultByEmail;
+    private boolean moimEnrollmentResultByEmail;
 
-    private boolean groupEnrollmentResultByWeb = true;
+    private boolean moimEnrollmentResultByWeb = true;
 
-    private boolean groupUpdatedByEmail;
+    private boolean moimUpdatedByEmail;
 
-    private boolean groupUpdatedByWeb = true;
+    private boolean moimUpdatedByWeb = true;
 
     @ManyToMany
     private Set<Tag> tags = new HashSet<>();
