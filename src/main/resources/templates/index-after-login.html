@@ -43,7 +43,7 @@
                                     <span class="calendar" th:text="${enrollment.event.startDateTime}">Last updated 3 mins ago</span>
                                 </span>
                             </p>
-                            <a th:href="@{'/moim/' + ${enrollment.event.moim.path} + '/events/' + ${enrollment.event.id}}" class="card-link">모임 조회</a>
+                            <a th:href="@{'/moim/' + ${enrollment.event.moim.path} + '/events/' + ${enrollment.event.id}}" class="card-link">세부 모임 조회</a>
                             <a th:href="@{'/moim/' + ${enrollment.event.moim.path}}" class="card-link">모임 조회</a>
                         </div>
                     </div>
