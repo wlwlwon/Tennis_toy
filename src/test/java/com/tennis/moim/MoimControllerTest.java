@@ -3,6 +3,7 @@ package com.tennis.moim;
 
 import com.tennis.account.Account;
 import com.tennis.account.AccountRepository;
+import com.tennis.account.WithAccount;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
