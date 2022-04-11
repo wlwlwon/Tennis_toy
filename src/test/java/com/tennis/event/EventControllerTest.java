@@ -34,7 +34,7 @@ class EventControllerTest extends ContainerBaseTest {
 
     @Test
     @DisplayName("선착순 모임에 참가 신청 - 자동 수락")
-    @WithAccount("keesun")
+    @WithAccount("jiwon")
     void newEnrollment_to_FCFS_event_accepted() throws Exception{
         Account whiteship = accountFactory.createAccount("whiteship");
         Moim moim = moimFactory.createMoim("test-moim", whiteship);
@@ -50,14 +50,14 @@ class EventControllerTest extends ContainerBaseTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/moim/" + moim.getPath() + "/events/" + event.getId()));
 
-        Account keesun = accountRepository.findByNickname("keesun");
-        isAccepted(keesun,event);
+        Account jiwon = accountRepository.findByNickname("jiwon");
+        isAccepted(jiwon,event);
     }
 
 
     @Test
     @DisplayName("선착순 모임에 참가 신청 - 대기중")
-    @WithAccount("keesun")
+    @WithAccount("jiwon")
     void newEnrollment_to_FCFS_event_not_accepted() throws Exception{
         Account whiteship = accountFactory.createAccount("whiteship");
         Moim moim = moimFactory.createMoim("test-moim", whiteship);
@@ -73,17 +73,17 @@ class EventControllerTest extends ContainerBaseTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/moim/" + moim.getPath() + "/events/" + event.getId()));
 
-        Account keesun = accountRepository.findByNickname("keesun");
-        isNotAccepted(keesun,event);
+        Account jiwon = accountRepository.findByNickname("jiwon");
+        isNotAccepted(jiwon,event);
     }
 
-    private void isNotAccepted(Account keesun, Event event) {
-        assertFalse(enrollmentRepository.findByEventAndAccount(event,keesun).isAccepted());
+    private void isNotAccepted(Account jiwon, Event event) {
+        assertFalse(enrollmentRepository.findByEventAndAccount(event,jiwon).isAccepted());
     }
 
 
-    private void isAccepted(Account keesun, Event event) {
-        assertTrue(enrollmentRepository.findByEventAndAccount(event,keesun).isAccepted());
+    private void isAccepted(Account jiwon, Event event) {
+        assertTrue(enrollmentRepository.findByEventAndAccount(event,jiwon).isAccepted());
     }
 
     private Event createEvent(String eventTitle, EventType eventType, int limit, Moim moim, Account account) {
