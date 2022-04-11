@@ -19,7 +19,6 @@ import java.util.Set;
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Moim {
 
-
     @Id
     @GeneratedValue
     private Long id;
