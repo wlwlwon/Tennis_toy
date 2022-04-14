@@ -1,85 +1,101 @@
-Andong,안동시,North Gyeongsang
-Ansan,안산시,Gyeonggi
-Anseong,안성시,Gyeonggi
-Anyang,안양시,Gyeonggi
-Asan,아산시,South Chungcheong
-Boryeong,보령시,South Chungcheong
-Bucheon,부천시,Gyeonggi
-Busan,부산광역시,none
-Changwon,창원시,South Gyeongsang
-Cheonan,천안시,South Chungcheong
-Cheongju,청주시,North Chungcheong
-Chuncheon,춘천시,Gangwon
-Chungju,충주시,North Chungcheong
-Daegu,대구광역시,none
-Daejeon,대전광역시,none
-Dangjin,당진시,South Chungcheong
-Dongducheon,동두천시,Gyeonggi
-Donghae,동해시,Gangwon
-Gangneung,강릉시,Gangwon
-Geoje,거제시,South Gyeongsang
-Gimcheon,김천시,North Gyeongsang
-Gimhae,김해시,South Gyeongsang
-Gimje,김제시,North Jeolla
-Gimpo,김포시,Gyeonggi
-Gongju,공주시,South Chungcheong
-Goyang,고양시,Gyeonggi
-Gumi,구미시,North Gyeongsang
-Gunpo,군포시,Gyeonggi
-Gunsan,군산시,North Jeolla
-Guri,구리시,Gyeonggi
-Gwacheon,과천시,Gyeonggi
-Gwangju,광주광역시,none
-Gwangju,광주시,Gyeonggi
-Gwangmyeong,광명시,Gyeonggi
-Gwangyang,광양시,South Jeolla
-Gyeongju,경주시,North Gyeongsang
-Gyeongsan,경산시,North Gyeongsang
-Gyeryong,계룡시,South Chungcheong
-Hanam,하남시,Gyeonggi
-Hwaseong,화성시,Gyeonggi
-Icheon,이천시,Gyeonggi
-Iksan,익산시,North Jeolla
-Incheon,인천광역시,none
-Jecheon,제천시,North Chungcheong
-Jeongeup,정읍시,North Jeolla
-Jeonju,전주시,North Jeolla
-Jeju,제주시,Jeju
-Jinju,진주시,South Gyeongsang
-Naju,나주시,South Jeolla
-Namyangju,남양주시,Gyeonggi
-Namwon,남원시,North Jeolla
-Nonsan,논산시,South Chungcheong
-Miryang,밀양시,South Gyeongsang
-Mokpo,목포시,South Jeolla
-Mungyeong,문경시,North Gyeongsang
-Osan,오산시,Gyeonggi
-Paju,파주시,Gyeonggi
-Pocheon,포천시,Gyeonggi
-Pohang,포항시,North Gyeongsang
-Pyeongtaek,평택시,Gyeonggi
-Sacheon,사천시,South Gyeongsang
-Sangju,상주시,North Gyeongsang
-Samcheok,삼척시,Gangwon
-Sejong,세종특별자치시,none
-Seogwipo,서귀포시,Jeju
-Seongnam,성남시,Gyeonggi
-Seosan,서산시,South Chungcheong
-Seoul,서울특별시,none
-Siheung,시흥시,Gyeonggi
-Sokcho,속초시,Gangwon
-Suncheon,순천시,South Jeolla
-Suwon,수원시,Gyeonggi
-Taebaek,태백시,Gangwon
-Tongyeong,통영시,South Gyeongsang
-Uijeongbu,의정부시,Gyeonggi
-Uiwang,의왕시,Gyeonggi
-Ulsan,울산광역시,none
-Wonju,원주시,Gangwon
-Yangju,양주시,Gyeonggi
-Yangsan,양산시,South Gyeongsang
-Yeoju,여주시,Gyeonggi
-Yeongcheon,영천시,North Gyeongsang
-Yeongju,영주시,North Gyeongsang
-Yeosu,여수시,South Jeolla
-Yongin,용인시,Gyeonggi
+Danwon-gu,단원구,Ansan
+Sangnok-gu,상록구,Ansan
+Dongan-gu,동안구,Anyang
+Manan-gu,만안구,Anyang
+Buk District,북구,Busan
+Busanjin District,부산진구,Busan
+Dong District,동구,Busan
+Dongnae District,동래구,Busan
+Gangseo District,강서구,Busan
+Geumjeong District,금정구,Busan
+Haeundae District,해운대구,Busan
+Jung District,중구,Busan
+Nam District,남구,Busan
+Saha District,사하구,Busan
+Sasang District,사상구,Busan
+Seo District,서구,Busan
+Suyeong District,수영구,Busan
+Yeongdo District,영도구,Busan
+Yeonje District,연제구,Busan
+Jinhae-gu,진해구,Changwon
+Masanhappo-gu,마산합포구,Changwon
+Masanhoewon-gu,마산회원구,Changwon
+Seongsan-gu,성산구,Changwon
+Uichang-gu,의창구,Changwon
+Heungdeok-gu,흥덕구,Cheongju
+Sangdang-gu,상당구,Cheongju
+Cheongwon-gu,청원구,Cheongju
+Seowon-gu,서원구,Cheongju
+Dongnam-gu,동남구,Cheonan
+Seobuk-gu,서북구,Cheonan
+Jung District,중구,Daegu
+Dong District,동구,Daegu
+Seo District,서구,Daegu
+Nam District,남구,Daegu
+Buk District,북구,Daegu
+Suseong District,수성구,Daegu
+Dalseo District,달서구,Daegu
+Daedeok District,대덕구,Daejeon
+Dong District,동구,Daejeon
+Jung District,중구,Daejeon
+Seo District,서구,Daejeon
+Yuseong District,유성구,Daejeon
+Deogyang-gu,덕양구,Goyang
+Ilsandong-gu,일산동구,Goyang
+Ilsanseo-gu,일산서구,Goyang
+Buk District,북구,Gwangju
+Dong District,동구,Gwangju
+Gwangsan District,광산구,Gwangju
+Nam District,남구,Gwangju
+Seo District,서구,Gwangju
+Bupyeong District,부평구,Incheon
+Dong District,동구,Incheon
+Gyeyang District,계양구,Incheon
+Jung District,중구,Incheon
+Namdong District,남동구,Incheon
+Michuhol District,미추홀구,Incheon
+Seo District,서구,Incheon
+Yeonsu District,연수구,Incheon
+Deokjin-gu,덕진구,Jeonju
+Wansan-gu,완산구,Jeonju
+Buk-gu,북구,Pohang
+Nam-gu,남구,Pohang
+Bundang-gu,분당구,Seongnam
+Jungwon-gu,중원구,Seongnam
+Sujeong-gu,수정구,Seongnam
+Dobong District,도봉구,Seoul
+Dongdaemun District,동대문구,Seoul
+Dongjak District,동작구,Seoul
+Eunpyeong District,은평구,Seoul
+Gangbuk District,강북구,Seoul
+Gangdong District,강동구,Seoul
+Gangnam District,강남구,Seoul
+Gangseo District,강서구,Seoul
+Geumcheon District,금천구,Seoul
+Guro District,구로구,Seoul
+Gwanak District,관악구,Seoul
+Gwangjin District,광진구,Seoul
+Jongno District,종로구,Seoul
+Jung District,중구,Seoul
+Jungnang District,중랑구,Seoul
+Mapo District,마포구,Seoul
+Nowon District,노원구,Seoul
+Seocho District,서초구,Seoul
+Seodaemun District,서대문구,Seoul
+Seongbuk District,성북구,Seoul
+Seongdong District,성동구,Seoul
+Songpa District,송파구,Seoul
+Yangcheon District,양천구,Seoul
+Yeongdeungpo District,영등포구,Seoul
+Yongsan District,용산구,Seoul
+Gwonseon-gu,권선구,Suwon
+Jangan-gu,장안구,Suwon
+Paldal-gu,팔달구,Suwon
+Yeongtong-gu,영통구,Suwon
+Buk District,북구,Ulsan
+Dong District,동구,Ulsan
+Jung District,중구,Ulsan
+Nam District,남구,Ulsan
+Cheoin-gu,처인구,Yongin
+Giheung-gu,기흥구,Yongin
+Suji-gu,수지구,Yongin

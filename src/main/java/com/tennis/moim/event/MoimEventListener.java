@@ -44,7 +44,7 @@ public class MoimEventListener {
         Iterable<Account> accounts = accountRepository.findAll(AccountPredicates.findByTagsAndZones(moim.getTags(), moim.getZones()));
         accounts.forEach( account -> {
             if(account.isMoimCreatedByEmail()){
-                sendMoimCreatedEmail(moim, account,"새로운 스터디가 생겼습니다.","스터디올래,'"+moim.getTitle()+"'스터디가 생겼습니다.");
+                sendMoimCreatedEmail(moim, account,"새로운 모임이 생겼습니다.","니스테,'"+moim.getTitle()+"'모임이 생겼습니다.");
             }
             if(account.isMoimCreatedByWeb()){
                 createNotification(moim, account, moim.getShortDescription(), NotificationType.Moim_UPDATED);

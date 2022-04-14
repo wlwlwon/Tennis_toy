@@ -136,7 +136,7 @@
                 </form>
             </div>
             <div class="row" th:if="${!moim.isRemovable()}">
-                <h5 class="col-sm-12 text-danger">스터디 삭제</h5>
+                <h5 class="col-sm-12 text-danger">모임 삭제</h5>
                 <form class="col-sm-12" action="#" th:action="@{'/moim/' + ${moim.getPath()} + '/settings/moim/remove'}" method="post" novalidate>
                     <div class="alert alert-danger" role="alert">
                         공개 중이고 모임을 했던 모임은 삭제할 수 없습니다.

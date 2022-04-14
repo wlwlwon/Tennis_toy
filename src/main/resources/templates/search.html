@@ -20,7 +20,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" th:classappend="${#strings.equals(sortProperty, 'publishedDateTime')}? active"
                    th:href="@{'/search/moim?sort=publishedDateTime,desc&keyword=' + ${keyword}}">
-                    스터디 공개일
+                    모임 공개일
                 </a>
                 <a class="dropdown-item" th:classappend="${#strings.equals(sortProperty, 'memberCount')}? active"
                    th:href="@{'/search/moim?sort=memberCount,desc&keyword=' + ${keyword}}">
