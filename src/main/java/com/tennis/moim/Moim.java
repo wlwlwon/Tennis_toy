@@ -19,7 +19,6 @@ import java.util.Set;
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Moim {
 
-
     @Id
     @GeneratedValue
     private Long id;
@@ -77,7 +76,7 @@ public class Moim {
     }
 
     public String getImage() {
-        return image != null ? image : "/images/default_banner.jpg";
+        return image != null ? image : "/images/tennis_cort.jpg";
     }
 
 

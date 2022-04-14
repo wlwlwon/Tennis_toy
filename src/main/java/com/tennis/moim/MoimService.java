@@ -42,7 +42,7 @@ public class MoimService {
     public Moim getMoim(String path) {
         Moim moim = this.repository.findByPath(path);
         if(moim==null){
-            throw new IllegalStateException(path+"에 해당하는 스터디가 없습니다.");
+            throw new IllegalStateException(path+"에 해당하는 모임이 없습니다.");
         }
         return moim;
     }
@@ -95,7 +95,7 @@ public class MoimService {
 
     private void checkIfExistingMoim(String path, Moim moim) {
         if(moim==null){
-            throw new IllegalArgumentException(path+"에 해당하는 스터디가 없습니다.");
+            throw new IllegalArgumentException(path+"에 해당하는 모임이 없습니다.");
         }
     }
 
@@ -121,7 +121,7 @@ public class MoimService {
 
     public void close(Moim moim) {
         moim.closed();
-        eventPublisher.publishEvent(new MoimUpdateEvent(moim,"스터디를 종료했습니다."));
+        eventPublisher.publishEvent(new MoimUpdateEvent(moim,"모임를 종료했습니다."));
     }
 
     public boolean isValidPath(String newPath) {
@@ -147,7 +147,7 @@ public class MoimService {
         if (moim.isRemovable()) {
             repository.delete(moim);
         } else {
-            throw new IllegalArgumentException("스터디를 삭제할 수 없습니다.");
+            throw new IllegalArgumentException("모임를 삭제할 수 없습니다.");
         }
     }
 
@@ -181,7 +181,7 @@ public class MoimService {
         for (int i = 0; i < 30; i++) {
             String randomvalue = RandomString.make(5);
             Moim moim = Moim.builder()
-                    .title("테스트 스터디 " + randomvalue)
+                    .title("테스트 모임 " + randomvalue)
                     .path("test-" + randomvalue)
                     .shortDescription("test moim")
                     .fullDescription("test")

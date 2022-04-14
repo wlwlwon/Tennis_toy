@@ -149,7 +149,7 @@ public class AccountService implements UserDetailsService {
 
         EmailMessage emailMessage = EmailMessage.builder()
                 .to(account.getEmail())
-                .subject("스터디올래, 로그인 링크")
+                .subject("니스테, 로그인 링크")
                 .message(message)
                 .build();
 
